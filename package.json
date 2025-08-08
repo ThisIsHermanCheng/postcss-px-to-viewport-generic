@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ThisIsHermanCheng/postcss-px-to-viewport-generic"
+    "url": "git+https://github.com/ThisIsHermanCheng/postcss-px-to-viewport-generic"
   },
   "scripts": {
     "build": "father build",
