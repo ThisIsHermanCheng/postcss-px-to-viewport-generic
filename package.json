@@ -1,5 +1,5 @@
 {
-  "name": "postcss-px-to-viewport-8-plugin",
+  "name": "postcss-px-to-viewport-8-plugin-generic",
   "version": "1.2.5",
   "main": "lib/index.js",
   "module": "lib/index.js",
