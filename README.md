@@ -103,7 +103,7 @@ yarn add postcss-px-to-viewport-8-plugin-generic -D
 ```
 {
   unitToConvert: 'px',
-  viewportWidth: 320,
+  viewportWidth: 1920,
   unitPrecision: 5,
   propList: ['*'],
   viewportUnit: 'vw',
@@ -115,7 +115,8 @@ yarn add postcss-px-to-viewport-8-plugin-generic -D
   exclude: [],
   landscape: false,
   landscapeUnit: 'vw',
-  landscapeWidth: 568
+  landscapeWidth: 568,
+  minViewportWidth:1900
 }
 ```
 
