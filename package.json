@@ -4,7 +4,7 @@
   "main": "lib/index.js",
   "module": "lib/index.js",
   "typings": "lib/index.d.ts",
-  "description": "css-vw",
+  "description": "A PostCSS plugin that converts px units to viewport units (vw, vh, vmin, vmax)",
   "authors": {
     "name": "lkxian888",
     "email": "lkxian888@163.com"
@@ -52,7 +52,7 @@
     "example": "example"
   },
   "keywords": [
-    "postcss-px-to-viewport-8-plugin",
+    "postcss-px-to-viewport-8-plugin-generic",
     "viewport",
     "postcss",
     "postcss-plugin",

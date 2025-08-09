@@ -1,32 +1,32 @@
-# postcss-px-to-viewport-8-plugin
+# postcss-px-to-viewport-8-plugin-generic
 
-将 px 单位转换为视口单位的 (vw, vh, vmin, vmax) 的 [PostCSS](https://github.com/postcss/postcss) 插件.
+A [PostCSS](https://github.com/postcss/postcss) plugin that converts px units to viewport units (vw, vh, vmin, vmax).
 
-## 问题
+## Problem
 
-使用 [postcss-px-to-viewport](https://github.com/evrone/postcss-px-to-viewport) 控制台报以下代码
+When using [postcss-px-to-viewport](https://github.com/evrone/postcss-px-to-viewport), the console shows the following warning:
 
 ```js
 postcss-px-to-viewport: postcss.plugin was deprecated. Migration guide: https://evilmartians.com/chronicles/postcss-8-plugin-migration
 
 ```
 
-## 解决
+## Solution
 
-`postcss-px-to-viewport` 替换 `postcss-px-to-viewport-8-plugin`
+Replace `postcss-px-to-viewport` with `postcss-px-to-viewport-8-plugin-generic`
 
-注意对应库版本
+Note the corresponding library versions:
 
 ```js
-  "postcss": "^8.3.8", // 8.0.0版本都不会转单位
+  "postcss": "^8.3.8", // Version 8.0.0 will not convert units
   "postcss-loader": "^6.1.1",
 ```
 
-## 简介
+## Introduction
 
-如果你的样式需要做根据视口大小来调整宽度，这个脚本可以将你 CSS 中的 px 单位转化为 vw，1vw 等于 1/100 视口宽度。
+If your styles need to adjust width based on viewport size, this script can convert px units in your CSS to vw units, where 1vw equals 1/100 of the viewport width.
 
-## 输入
+## Input
 
 ```css
 .class {
@@ -57,7 +57,7 @@ postcss-px-to-viewport: postcss.plugin was deprecated. Migration guide: https://
 }
 ```
 
-## 输出
+## Output
 
 ```css
 .class {
@@ -87,18 +87,18 @@ postcss-px-to-viewport: postcss.plugin was deprecated. Migration guide: https://
 }
 ```
 
-## 安装
+## Installation
 
 ```js
 
-npm install postcss-px-to-viewport-8-plugin -D
+npm install postcss-px-to-viewport-8-plugin-generic -D
 or
-yarn add postcss-px-to-viewport-8-plugin -D
+yarn add postcss-px-to-viewport-8-plugin-generic -D
 ```
 
-## 配置参数使用与 [postcss-px-to-viewport](https://www.npmjs.com/package/postcss-px-to-viewport) 一致
+## Configuration parameters are consistent with [postcss-px-to-viewport](https://www.npmjs.com/package/postcss-px-to-viewport)
 
-**默认选项：**
+**Default options:**
 
 ```
 {
@@ -119,46 +119,46 @@ yarn add postcss-px-to-viewport-8-plugin -D
 }
 ```
 
-## API 说明
+## API Description
 
-| 参数 | 说明 | 类型 | 默认值 |
+| Parameter | Description | Type | Default |
 | :-- | --- | --- | --- |
-| `unitToConvert` | 需要转换的单位，默认为 px | `string` | px |
-| `viewportWidth` | 设计稿的视口宽度,如传入函数，函数的参数为当前处理的文件路径,函数返回 `undefind` 跳过转换 | `number \| Function` | 320 |
-| `unitPrecision` | 单位转换后保留的精度 | `number` | 5 |
-| `propList` | 能转化为 vw 的属性列表 | `string[]` | ['*'] |
-| `viewportUnit` | 希望使用的视口单位 | `string` | vw |
-| `fontViewportUnit` | 字体使用的视口单位 | `string` | vw |
-| `selectorBlackList` | 需要忽略的 CSS 选择器，不会转为视口单位，使用原有的 px 等单位 | `string[]` | [] |
-| `minPixelValue` | 设置最小的转换数值，如果为 1 的话，只有大于 1 的值会被转换 | `number` | 1 |
-| `mediaQuery` | 媒体查询里的单位是否需要转换单位 | `boolean` | false |
-| `replace` | 是否直接更换属性值，而不添加备用属性 | `boolean` | true |
-| `landscape` | 是否添加根据 `landscapeWidth` 生成的媒体查询条件 `@media (orientation: landscape)` | `boolean` | false |
-| `landscapeUnit` | 横屏时使用的单位 | `string` | vw |
-| `landscapeWidth` | 横屏时使用的视口宽度,,如传入函数，函数的参数为当前处理的文件路径,函数返回 `undefind` 跳过转换 | `number` | 568 |
-| `exclude` | 忽略某些文件夹下的文件或特定文件，例如 node_modules 下的文件，如果值是一个正则表达式，那么匹配这个正则的文件会被忽略，如果传入的值是一个数组，那么数组里的值必须为正则 | `Regexp` | undefined |
-| `include` | 需要转换的文件，例如只转换 'src/mobile' 下的文件 (`include: /\/src\/mobile\//`)，如果值是一个正则表达式，将包含匹配的文件，否则将排除该文件， 如果传入的值是一个数组，那么数组里的值必须为正则 | `Regexp` | undefined |
-| `minViewportWidth` | 最小视口宽度阈值，只有当视口宽度大于此值时才转换为视口单位。当设置此选项时，会生成媒体查询，小于此宽度时使用原始px值，大于此宽度时使用视口单位 | `number` | undefined |
+| `unitToConvert` | Unit to convert, default is px | `string` | px |
+| `viewportWidth` | Design viewport width. If a function is passed, the function parameter is the file path being processed. Function returns `undefined` to skip conversion | `number \| Function` | 320 |
+| `unitPrecision` | Precision retained after unit conversion | `number` | 5 |
+| `propList` | List of properties that can be converted to vw | `string[]` | ['*'] |
+| `viewportUnit` | Viewport unit to use | `string` | vw |
+| `fontViewportUnit` | Viewport unit used for fonts | `string` | vw |
+| `selectorBlackList` | CSS selectors to ignore, will not be converted to viewport units, using original px units | `string[]` | [] |
+| `minPixelValue` | Minimum conversion value. If set to 1, only values greater than 1 will be converted | `number` | 1 |
+| `mediaQuery` | Whether units in media queries need to be converted | `boolean` | false |
+| `replace` | Whether to directly replace property values instead of adding fallback properties | `boolean` | true |
+| `landscape` | Whether to add media query condition `@media (orientation: landscape)` based on `landscapeWidth` | `boolean` | false |
+| `landscapeUnit` | Unit used in landscape mode | `string` | vw |
+| `landscapeWidth` | Viewport width used in landscape mode. If a function is passed, the function parameter is the file path being processed. Function returns `undefined` to skip conversion | `number` | 568 |
+| `exclude` | Ignore files in certain folders or specific files, such as files under node_modules. If the value is a regular expression, files matching this regex will be ignored. If an array is passed, the array values must be regular expressions | `Regexp` | undefined |
+| `include` | Files to convert, such as only converting files under 'src/mobile' (`include: /\/src\/mobile\//`). If the value is a regular expression, matching files will be included, otherwise the file will be excluded. If an array is passed, the array values must be regular expressions | `Regexp` | undefined |
+| `minViewportWidth` | Minimum viewport width threshold. Only convert to viewport units when viewport width is greater than this value. When this option is set, media queries will be generated. Original px values are used for widths smaller than this, viewport units for widths larger than this | `number` | undefined |
 
-## 补充说明
+## Additional Notes
 
-- `propList` (Array) 能转化为 vw 的属性列表
-  - 传入特定的 CSS 属性；
-  - 可以传入通配符"_"去匹配所有属性，例如：['_']；
-  - 在属性的前或后添加"*",可以匹配特定的属性. (例如['*position\*'] 会匹配 background-position-y)
-  - 在特定属性前加 "!"，将不转换该属性的单位 . 例如: ['*', '!letter-spacing']，将不转换 letter-spacing
-  - "!" 和 "_"可以组合使用， 例如: ['_', '!font\*']，将不转换 font-size 以及 font-weight 等属性
-- `selectorBlackList` (Array) 需要忽略的 CSS 选择器，不会转为视口单位，使用原有的 px 等单位。
+- `propList` (Array) List of properties that can be converted to vw
+  - Pass specific CSS properties;
+  - You can pass wildcard "*" to match all properties, for example: ['*'];
+  - Add "*" before or after the property to match specific properties. (e.g. ['*position*'] will match background-position-y)
+  - Add "!" before specific properties to not convert units of that property. For example: ['*', '!letter-spacing'], will not convert letter-spacing
+  - "!" and "*" can be used together. For example: ['*', '!font*'], will not convert font-size and font-weight properties
+- `selectorBlackList` (Array) CSS selectors to ignore, will not be converted to viewport units, using original px units.
 
-  - 如果传入的值为字符串的话，只要选择器中含有传入值就会被匹配
-    - 例如 `selectorBlackList` 为 `['body']` 的话， 那么 `.body-class` 就会被忽略
-  - 如果传入的值为正则表达式的话，那么就会依据 CSS 选择器是否匹配该正则
-    - 例如 `selectorBlackList` 为 `[/^body$/]` , 那么 `body` 会被忽略，而 `.body` 不会
+  - If the passed value is a string, as long as the selector contains the passed value, it will be matched
+    - For example, if `selectorBlackList` is `['body']`, then `.body-class` will be ignored
+  - If the passed value is a regular expression, it will be based on whether the CSS selector matches the regex
+    - For example, if `selectorBlackList` is `[/^body$/]`, then `body` will be ignored, but `.body` will not
 
-- 你可以使用特殊的注释来忽略单行的转换:
+- You can use special comments to ignore conversion on single lines:
 
-  - `/* px-to-viewport-ignore-next */` — 在单独的行上，防止在下一行上进行转换。
-  - `/* px-to-viewport-ignore */` — 在右边的属性之后，防止在同一行上进行转换。
+  - `/* px-to-viewport-ignore-next */` — on a separate line, prevents conversion on the next line.
+  - `/* px-to-viewport-ignore */` — after the property on the right, prevents conversion on the same line.
 
 Example:
 
@@ -183,15 +183,15 @@ Example:
 
 There are several more reasons why your pixels may not convert, the following options may affect this: `propList`, `selectorBlackList`, `minPixelValue`, `mediaQuery`, `exclude`, `include`.
 
-## 与 PostCss 配置文件一起使用
+## Usage with PostCSS Configuration File
 
-**在`postcss.config.js`文件添加如下配置**
+**Add the following configuration to `postcss.config.js` file**
 
 ```js
 module.exports = {
   plugins: {
     ...
-    'postcss-px-to-viewport-8-plugin': {
+    'postcss-px-to-viewport-8-plugin-generic': {
       viewportWidth: 1920,
       exclude: [/node_modules/],
       unitToConvert: 'px',
@@ -201,13 +201,13 @@ module.exports = {
 }
 ```
 
-## vite 使用
+## Vite Usage
 
-**在`vite.config.ts`文件添加如下配置**
+**Add the following configuration to `vite.config.ts` file**
 
 ```ts
 import { defineConfig } from 'vite';
-import postcsspxtoviewport8plugin from 'postcss-px-to-viewport-8-plugin';
+import postcsspxtoviewport8plugin from 'postcss-px-to-viewport-8-plugin-generic';
 
 export default defineConfig({
   css: {
@@ -222,20 +222,20 @@ export default defineConfig({
             }
             return num;
           },
-          unitPrecision: 5, // 单位转换后保留的精度
-          propList: ['*'], // 能转化为vw的属性列表
-          viewportUnit: 'vw', // 希望使用的视口单位
-          fontViewportUnit: 'vw', // 字体使用的视口单位
-          selectorBlackList: [], // 需要忽略的CSS选择器，不会转为视口单位，使用原有的px等单位。
-          minPixelValue: 1, // 设置最小的转换数值，如果为1的话，只有大于1的值会被转换
-          mediaQuery: true, // 媒体查询里的单位是否需要转换单位
-          replace: true, //  是否直接更换属性值，而不添加备用属性
-          exclude: [/node_modules\/ant-design-vue/], // 忽略某些文件夹下的文件或特定文件，例如 'node_modules' 下的文件
-          include: [], // 如果设置了include，那将只有匹配到的文件才会被转换
-          landscape: false, // 是否添加根据 landscapeWidth 生成的媒体查询条件 @media (orientation: landscape)
-          landscapeUnit: 'vw', // 横屏时使用的单位
-          landscapeWidth: 1024, // 横屏时使用的视口宽度
-          minViewportWidth: 768, // 最小视口宽度阈值，只有当视口宽度大于此值时才转换为视口单位
+          unitPrecision: 5, // Precision retained after unit conversion
+          propList: ['*'], // List of properties that can be converted to vw
+          viewportUnit: 'vw', // Viewport unit to use
+          fontViewportUnit: 'vw', // Viewport unit used for fonts
+          selectorBlackList: [], // CSS selectors to ignore, will not be converted to viewport units, using original px units.
+          minPixelValue: 1, // Minimum conversion value. If set to 1, only values greater than 1 will be converted
+          mediaQuery: true, // Whether units in media queries need to be converted
+          replace: true, // Whether to directly replace property values instead of adding fallback properties
+          exclude: [/node_modules\/ant-design-vue/], // Ignore files in certain folders or specific files, such as files under 'node_modules'
+          include: [], // If include is set, only matching files will be converted
+          landscape: false, // Whether to add media query condition @media (orientation: landscape) based on landscapeWidth
+          landscapeUnit: 'vw', // Unit used in landscape mode
+          landscapeWidth: 1024, // Viewport width used in landscape mode
+          minViewportWidth: 768, // Minimum viewport width threshold. Only convert to viewport units when viewport width is greater than this value
         }),
       ],
     },
@@ -243,11 +243,11 @@ export default defineConfig({
 });
 ```
 
-## minViewportWidth 功能示例
+## minViewportWidth Feature Example
 
-当设置 `minViewportWidth` 选项时，插件会生成响应式CSS，只在视口宽度大于指定阈值时使用视口单位。
+When the `minViewportWidth` option is set, the plugin generates responsive CSS that only uses viewport units when the viewport width is greater than the specified threshold.
 
-### 输入
+### Input
 
 ```css
 .container {
@@ -257,7 +257,7 @@ export default defineConfig({
 }
 ```
 
-### 配置
+### Configuration
 
 ```js
 {
@@ -266,7 +266,7 @@ export default defineConfig({
 }
 ```
 
-### 输出
+### Output
 
 ```css
 .container {
@@ -284,37 +284,37 @@ export default defineConfig({
 }
 ```
 
-这样，在小于768px的设备上会使用原始的px值，而在大于768px的设备上会使用响应式的视口单位。
+This way, devices smaller than 768px will use the original px values, while devices larger than 768px will use responsive viewport units.
 
-### 使用场景
+### Use Cases
 
-`minViewportWidth` 特别适用于以下场景：
+`minViewportWidth` is particularly suitable for the following scenarios:
 
-1. **移动优先设计**: 在小屏设备上保持像素精度，在大屏设备上使用响应式布局
-2. **渐进式响应式**: 为不同屏幕尺寸提供更精细的控制
-3. **性能优化**: 避免在小屏设备上不必要的视口单位计算
+1. **Mobile-first design**: Maintain pixel precision on small screen devices, use responsive layout on large screen devices
+2. **Progressive responsive**: Provide finer control for different screen sizes
+3. **Performance optimization**: Avoid unnecessary viewport unit calculations on small screen devices
 
-### 配置示例
+### Configuration Examples
 
 ```js
-// 移动优先配置
+// Mobile-first configuration
 {
-  viewportWidth: 375,      // 基于移动设备设计稿
-  minViewportWidth: 768,   // 平板以上设备使用响应式
+  viewportWidth: 375,      // Based on mobile device design
+  minViewportWidth: 768,   // Tablet and above devices use responsive
   unitPrecision: 3,
   viewportUnit: 'vw'
 }
 
-// 桌面优先配置
+// Desktop-first configuration
 {
-  viewportWidth: 1920,     // 基于桌面设计稿
-  minViewportWidth: 1024,  // 桌面设备使用响应式
+  viewportWidth: 1920,     // Based on desktop design
+  minViewportWidth: 1024,  // Desktop devices use responsive
   unitPrecision: 3,
   viewportUnit: 'vw'
 }
 ```
 
-## 作者
+## Authors
 
 - Forked from: [lkxian888](https://github.com/lkxian888) 
 - Generic Version: [ThisIsHermanCheng](https://github.com/ThisIsHermanCheng)

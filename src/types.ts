@@ -1,89 +1,89 @@
 import type { Rule } from 'postcss';
 
 export type OptionType = {
-  //  /* px-to-viewport-ignore-next */  在另一行上，阻止下一行上的转换
-  // /* px-to-viewport-ignore */  在右边的属性之后，防止在同一行上转换
+  //  /* px-to-viewport-ignore-next */  On another line, prevents conversion on the next line
+  // /* px-to-viewport-ignore */  After the property on the right, prevents conversion on the same line
 
   /**
-   * 需要转换的单位，默认为"px"
+   * Unit to convert, default is "px"
    */
   unitToConvert?: string;
   /**
-   * 设计稿的视口宽度
-   * 支持传入函数，函数的参数为当前处理的文件路径
+   * Design viewport width
+   * Supports passing a function, the function parameter is the file path being processed
    */
   viewportWidth?: number | ((filePath: string) => number|undefined);
   /**
-   * 设计稿的视口高度
+   * Design viewport height
    */
   viewportHeight?: number; // not now used; TODO: need for different units and math for different properties
   /**
-   * 单位转换后保留的精度
+   * Precision retained after unit conversion
    */
   unitPrecision?: number;
   /**
-   * 希望使用的视口单位
+   * Viewport unit to use
    */
   viewportUnit?: string;
   /**
-   * 字体使用的视口单位
+   * Viewport unit used for fonts
    */
   fontViewportUnit?: string; // vmin is more suitable.
   /**
-   * 需要忽略的CSS选择器，不会转为视口单位，使用原有的px等单位
-   * 如果传入的值为字符串的话，只要选择器中含有传入值就会被匹配：例如 selectorBlackList 为 ['body'] 的话， 那么 .body-class 就会被忽略
-   * 如果传入的值为正则表达式的话，那么就会依据CSS选择器是否匹配该正则：例如 selectorBlackList 为 [/^body$/] , 那么 body 会被忽略，而 .body 不会
+   * CSS selectors to ignore, will not be converted to viewport units, using original px units
+   * If the passed value is a string, as long as the selector contains the passed value, it will be matched: for example, if selectorBlackList is ['body'], then .body-class will be ignored
+   * If the passed value is a regular expression, it will be based on whether the CSS selector matches the regex: for example, if selectorBlackList is [/^body$/], then body will be ignored, but .body will not
    */
   selectorBlackList?: string[];
   /**
-   * 能转化为vw的属性列表
-   * 传入特定的CSS属性
-   * 可以传入通配符""去匹配所有属性，例如：['']
-   * 在属性的前或后添加"*",可以匹配特定的属性. (例如['position'] 会匹配 background-position-y)
-   * 在特定属性前加 "!"，将不转换该属性的单位 . 例如: ['*', '!letter-spacing']，将不转换letter-spacing
-   * "!" 和 ""可以组合使用， 例如: ['', '!font*']，将不转换font-size以及font-weight等属性
+   * List of properties that can be converted to vw
+   * Pass specific CSS properties
+   * You can pass wildcard "*" to match all properties, for example: ['*']
+   * Add "*" before or after the property to match specific properties. (e.g. ['*position*'] will match background-position-y)
+   * Add "!" before specific properties to not convert units of that property. For example: ['*', '!letter-spacing'], will not convert letter-spacing
+   * "!" and "*" can be used together. For example: ['*', '!font*'], will not convert font-size and font-weight properties
    */
   propList?: string[];
   /**
-   * 设置最小的转换数值，如果为1的话，只有大于1的值会被转换
+   * Minimum conversion value. If set to 1, only values greater than 1 will be converted
    */
   minPixelValue?: number;
   /**
-   * 媒体查询里的单位是否需要转换单位
+   * Whether units in media queries need to be converted
    */
   mediaQuery?: boolean;
   /**
-   * 是否直接更换属性值，而不添加备用属性
+   * Whether to directly replace property values instead of adding fallback properties
    */
   replace?: boolean;
   /**
-   * 忽略某些文件夹下的文件或特定文件，例如 'node_modules' 下的文件
-   * 如果值是一个正则表达式，那么匹配这个正则的文件会被忽略
-   * 如果传入的值是一个数组，那么数组里的值必须为正则
+   * Ignore files in certain folders or specific files, such as files under 'node_modules'
+   * If the value is a regular expression, files matching this regex will be ignored
+   * If an array is passed, the array values must be regular expressions
    */
   exclude?: RegExp | RegExp[];
   /**
-   * 如果设置了include，那将只有匹配到的文件才会被转换
-   * 如果值是一个正则表达式，将包含匹配的文件，否则将排除该文件
-   * 如果传入的值是一个数组，那么数组里的值必须为正则
+   * If include is set, only matching files will be converted
+   * If the value is a regular expression, matching files will be included, otherwise the file will be excluded
+   * If an array is passed, the array values must be regular expressions
    */
   include?: RegExp | RegExp[];
   /**
-   * 是否添加根据 landscapeWidth 生成的媒体查询条件 @media (orientation: landscape)
+   * Whether to add media query condition @media (orientation: landscape) based on landscapeWidth
    */
   landscape?: boolean;
   /**
-   * 横屏时使用的单位
+   * Unit used in landscape mode
    */
   landscapeUnit?: string;
   /**
-   * 横屏时使用的视口宽度
-   * 支持传入函数，函数的参数为当前处理的文件路径
+   * Viewport width used in landscape mode
+   * Supports passing a function, the function parameter is the file path being processed
    */
   landscapeWidth?: number | ((filePath: string) => number|undefined);
   /**
-   * 最小视口宽度阈值，只有当视口宽度大于此值时才转换为视口单位
-   * 当设置此选项时，会生成媒体查询，小于此宽度时使用原始px值，大于此宽度时使用视口单位
+   * Minimum viewport width threshold. Only convert to viewport units when viewport width is greater than this value
+   * When this option is set, media queries will be generated. Original px values are used for widths smaller than this, viewport units for widths larger than this
    */
   minViewportWidth?: number;
 
