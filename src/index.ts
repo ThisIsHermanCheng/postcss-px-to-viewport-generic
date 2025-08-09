@@ -50,7 +50,7 @@ const postcssPxToViewport = (options: OptionType) => {
   return {
     postcssPlugin: 'postcss-px-to-viewport',
     Once(css: Root, { result }: { result: any }) {
-      // @ts-ignore 补充类型
+      // @ts-ignore Add type definitions
       css.walkRules((rule: RuleType) => {
         // Add exclude option to ignore some files like 'node_modules'
         const file = rule.source?.input.file || '';
@@ -219,7 +219,7 @@ const postcssPxToViewport = (options: OptionType) => {
     // Once, Root, AtRule, and Rule will be called before processing children.
     // OnceExit, RootExit, AtRuleExit, and RuleExit after processing all children inside node.
     OnceExit(css: Root, { AtRule }: { AtRule: any }) {
-      // 在 Once里跑这段逻辑，设置横屏时，打包后到生产环境竖屏样式会覆盖横屏样式，所以 OnceExit再执行。
+      // When running this logic in Once, setting landscape mode causes portrait styles to override landscape styles in production environment after packaging, so run in OnceExit.
       if (landscapeRules.length > 0) {
         const landscapeRoot = new AtRule({
           params: '(orientation: landscape)',
